@@ -42,13 +42,13 @@ void LRUReplacer::Pin(frame_id_t frame_id) {
   auto iter = iter_map_[frame_id];
   frame_list_.erase(iter);
   iter_map_.erase(frame_id);
-  return;
 }
 
 void LRUReplacer::Unpin(frame_id_t frame_id) {
   lock_guard<mutex> guard(lock_);
   if (iter_map_.count(frame_id)) {
-    frame_list_.erase(iter_map_[frame_id]);
+    //frame_list_.erase(iter_map_[frame_id]);
+    return; // why???
   }
   frame_list_.push_front(frame_id);
   iter_map_[frame_id] = frame_list_.begin();

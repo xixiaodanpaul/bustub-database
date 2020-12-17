@@ -49,7 +49,6 @@ class LRUReplacer : public Replacer {
   size_t Size() override;
 
  private:
-  // TODO(student): implement me!
   mutex lock_;
   list<frame_id_t> frame_list_;
   unordered_map<frame_id_t, list<frame_id_t>::iterator> iter_map_;

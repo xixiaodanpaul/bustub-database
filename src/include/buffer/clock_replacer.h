@@ -49,12 +49,13 @@ class ClockReplacer : public Replacer {
   size_t Size() override;
 
  private:
-  // TODO(student): implement me!
   mutex lock_;
   list<frame_id_t> frame_list_;
   list<frame_id_t>::iterator clock_hand_;
   unordered_map<frame_id_t, bool> ref_map_;
   unordered_map<frame_id_t, list<frame_id_t>::iterator> iter_map_;
+
+  void PinThread(frame_id_t frame_id);
 };
 
 }  // namespace bustub
