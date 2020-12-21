@@ -35,6 +35,7 @@ bool LRUReplacer::Victim(frame_id_t *frame_id) {
 }
 
 void LRUReplacer::Pin(frame_id_t frame_id) {
+  // remove from replacer
   lock_guard<mutex> guard(lock_);
   if (!iter_map_.count(frame_id)) {
     return;
@@ -45,6 +46,7 @@ void LRUReplacer::Pin(frame_id_t frame_id) {
 }
 
 void LRUReplacer::Unpin(frame_id_t frame_id) {
+  // insert into replacer
   lock_guard<mutex> guard(lock_);
   if (iter_map_.count(frame_id)) {
     //frame_list_.erase(iter_map_[frame_id]);
